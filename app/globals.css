@@ -1,0 +1,167 @@
+:root {
+  --abyss: #0a1018;
+  --abyss-2: #0f1a26;
+  --ink: #16222f;
+  --mist: #e8eef2;
+  --mist-dim: #9fb1bf;
+  --foam: #c9b88a;        /* warm sand/foam accent */
+  --foam-bright: #e4d2a3;
+  --line: rgba(201, 184, 138, 0.18);
+  --serif: "Cormorant Garamond", Georgia, serif;
+  --sans: ui-sans-serif, system-ui, "Helvetica Neue", Arial, sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--abyss);
+  color: var(--mist);
+  font-family: var(--sans);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.6;
+}
+
+a { color: inherit; text-decoration: none; }
+
+/* ---------- Header ---------- */
+.site-header {
+  position: sticky; top: 0; z-index: 50;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.1rem clamp(1.25rem, 5vw, 4rem);
+  background: rgba(10, 16, 24, 0.72);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
+}
+.brand {
+  font-family: var(--serif);
+  font-size: clamp(1.15rem, 2.4vw, 1.5rem);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--mist);
+}
+.nav { display: flex; gap: clamp(1rem, 3vw, 2.4rem); }
+.nav a {
+  font-size: 0.74rem; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--mist-dim); transition: color 0.25s ease; padding: 0.2rem 0;
+  position: relative;
+}
+.nav a:hover { color: var(--foam-bright); }
+.nav a::after {
+  content: ""; position: absolute; left: 0; bottom: -3px; height: 1px; width: 0;
+  background: var(--foam); transition: width 0.3s ease;
+}
+.nav a:hover::after { width: 100%; }
+
+/* ---------- Hero ---------- */
+.hero {
+  position: relative; min-height: 86vh;
+  display: flex; align-items: flex-end;
+  overflow: hidden;
+}
+.hero img { object-fit: cover; }
+.hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(10,16,24,0.25) 0%, rgba(10,16,24,0.55) 55%, var(--abyss) 100%);
+}
+.hero-inner {
+  position: relative; z-index: 2;
+  padding: clamp(2rem, 6vw, 5rem); max-width: 760px;
+}
+.eyebrow {
+  font-size: 0.72rem; letter-spacing: 0.32em; text-transform: uppercase;
+  color: var(--foam); margin-bottom: 1.1rem;
+}
+.hero h1 {
+  font-family: var(--serif); font-weight: 500;
+  font-size: clamp(2.2rem, 6vw, 4.4rem); line-height: 1.05;
+  letter-spacing: -0.01em; margin-bottom: 1.2rem;
+}
+.lede { color: var(--mist-dim); font-size: clamp(1rem, 1.6vw, 1.18rem); max-width: 60ch; }
+
+/* ---------- Sections ---------- */
+.section { padding: clamp(3.5rem, 9vw, 7rem) clamp(1.25rem, 5vw, 4rem); }
+.section-head {
+  display: flex; align-items: baseline; justify-content: space-between;
+  gap: 1rem; margin-bottom: 2.5rem; flex-wrap: wrap;
+  border-bottom: 1px solid var(--line); padding-bottom: 1rem;
+}
+.section-head h2 {
+  font-family: var(--serif); font-weight: 500;
+  font-size: clamp(1.6rem, 3.5vw, 2.6rem); letter-spacing: 0.01em;
+}
+.section-head .more {
+  font-size: 0.74rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--foam); white-space: nowrap;
+}
+.section-head .more:hover { color: var(--foam-bright); }
+
+/* ---------- Album grid ---------- */
+.grid {
+  display: grid; gap: clamp(0.75rem, 2vw, 1.5rem);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+}
+.album {
+  position: relative; aspect-ratio: 4 / 5; overflow: hidden;
+  border: 1px solid var(--line);
+}
+.album img { object-fit: cover; transition: transform 0.7s cubic-bezier(0.2,0.7,0.2,1); }
+.album:hover img { transform: scale(1.05); }
+.album-label {
+  position: absolute; inset: auto 0 0 0; z-index: 2;
+  padding: 1.4rem 1.2rem 1.1rem;
+  background: linear-gradient(180deg, transparent, rgba(10,16,24,0.85));
+}
+.album-label .t {
+  font-family: var(--serif); font-size: 1.4rem; font-weight: 500;
+}
+.album-label .s {
+  font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--foam); margin-top: 0.25rem;
+}
+
+/* ---------- About ---------- */
+.prose { max-width: 70ch; }
+.prose p { margin-bottom: 1.1rem; color: var(--mist-dim); }
+.prose a { color: var(--foam-bright); border-bottom: 1px solid var(--line); }
+.page-title {
+  font-family: var(--serif); font-weight: 500;
+  font-size: clamp(2.2rem, 6vw, 3.6rem); margin-bottom: 2rem;
+}
+.gear { margin-top: 2.5rem; display: grid; gap: 1.4rem; }
+.gear .item { border-left: 2px solid var(--foam); padding-left: 1rem; }
+.gear .cap { font-size: 0.74rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--foam); }
+.gear .name { font-family: var(--serif); font-size: 1.25rem; }
+
+/* ---------- Contact ---------- */
+.contact-mail {
+  font-family: var(--serif); font-size: clamp(1.5rem, 4vw, 2.6rem);
+  color: var(--foam-bright); border-bottom: 1px solid var(--line);
+}
+
+/* ---------- Footer ---------- */
+.site-footer {
+  border-top: 1px solid var(--line);
+  padding: clamp(2.5rem, 6vw, 4rem) clamp(1.25rem, 5vw, 4rem);
+  display: flex; flex-direction: column; gap: 1.5rem;
+}
+.site-footer .fbrand { font-family: var(--serif); font-size: 1.6rem; }
+.signup { display: flex; gap: 0.5rem; flex-wrap: wrap; max-width: 420px; }
+.signup input {
+  flex: 1; min-width: 200px; background: var(--abyss-2); border: 1px solid var(--line);
+  color: var(--mist); padding: 0.7rem 0.9rem; font-size: 0.9rem;
+}
+.signup button {
+  background: var(--foam); color: var(--abyss); border: none;
+  padding: 0.7rem 1.4rem; font-size: 0.74rem; letter-spacing: 0.18em;
+  text-transform: uppercase; cursor: pointer; transition: background 0.25s;
+}
+.signup button:hover { background: var(--foam-bright); }
+.foot-links { display: flex; gap: 1.5rem; flex-wrap: wrap; font-size: 0.76rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mist-dim); }
+.foot-links a:hover { color: var(--foam-bright); }
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+  html { scroll-behavior: auto; }
+}
