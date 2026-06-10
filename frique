@@ -3,5 +3,5 @@ git init
 git add .
 git commit -m "Initial Next.js rebuild of friquefotography.com"
 git branch -M main
-git remote add origin https://github.com/<your-username>/friquefotography_claude.git
+git remote add origin https://github.com/Cinesra97/friquefotography_claude.git
 git push -u origin main
